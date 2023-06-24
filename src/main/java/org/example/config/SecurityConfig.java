@@ -3,9 +3,7 @@ package org.example.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -20,8 +18,9 @@ public class SecurityConfig {
                 oauth2Login.loginPage("/oauth2/authorization/main-client")
             );
         
-        http.authorizeHttpRequests(authorize ->
-                authorize.anyRequest().authenticated()
+        http.authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/login/**", "/oauth2/**").permitAll()
+                .anyRequest().authenticated()
             );
         
         return http.build();

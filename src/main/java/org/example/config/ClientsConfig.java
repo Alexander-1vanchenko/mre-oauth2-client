@@ -43,8 +43,7 @@ public class ClientsConfig {
     
     @Bean
     public OAuth2AuthorizedClientManager oauth2AuthorizedClientManager(
-        OAuth2AuthorizedClientRepository authorizedClientRepository
-    ) {
+        OAuth2AuthorizedClientRepository authorizedClientRepository) {
         
         var clientManager =
             new DefaultOAuth2AuthorizedClientManager(
